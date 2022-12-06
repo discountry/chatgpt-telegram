@@ -72,7 +72,7 @@ func main() {
 	userConversations := make(map[int64]Conversation)
 
 	for update := range updates {
-		if update.Message == nil || !strings.Contains(update.Message.Text, os.Getenv("TELEGRAM_BOT_NAME")) {
+		if update.Message == nil {
 			continue
 		}
 
@@ -89,6 +89,9 @@ func main() {
 
 		bot.Request(tgbotapi.NewChatAction(update.Message.Chat.ID, "typing"))
 		if !update.Message.IsCommand() {
+			if !strings.Contains(update.Message.Text, os.Getenv("TELEGRAM_BOT_NAME")) {
+				continue
+			}
 			filterMessage := strings.Replace(update.Message.Text, os.Getenv("TELEGRAM_BOT_NAME"), "", 1)
 			feed, err := chatGPT.SendMessage(filterMessage, userConversations[update.Message.Chat.ID].ConversationID, userConversations[update.Message.Chat.ID].LastMessageID)
 			if err != nil {
