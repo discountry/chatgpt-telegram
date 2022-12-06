@@ -8,6 +8,12 @@ Go CLI to fuels a Telegram bot that lets you interact with [ChatGPT](https://ope
 
 Download the file corresponding to your OS in the [releases page](https://github.com/m1guelpf/chatgpt-telegram/releases/latest). After you extract it, copy `env.example` to `.env` and fill in your Bot's details (you'll need your bot token, which you can find [here](https://core.telegram.org/bots/tutorial#obtain-your-bot-token), and optionally your telegram id, which you can find by DMing `@userinfobot` on Telegram.
 
+```
+TELEGRAM_ID=123456 # your ID find from `@userinfobot`
+TELEGRAM_TOKEN=123456:abcdefg # your bot token
+TELEGRAM_BOT_NAME="your_bot_name" # your bot name
+```
+
 ## Usage
 
 Run the `chatgpt-telegram` binary!
