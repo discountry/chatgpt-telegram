@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"strconv"
 	"syscall"
+	"strings"
 	"time"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -71,7 +72,7 @@ func main() {
 	userConversations := make(map[int64]Conversation)
 
 	for update := range updates {
-		if update.Message == nil {
+		if update.Message == nil || !strings.Contains(update.Message.Text, os.Getenv("TELEGRAM_BOT_NAME")) {
 			continue
 		}
 
@@ -88,7 +89,8 @@ func main() {
 
 		bot.Request(tgbotapi.NewChatAction(update.Message.Chat.ID, "typing"))
 		if !update.Message.IsCommand() {
-			feed, err := chatGPT.SendMessage(update.Message.Text, userConversations[update.Message.Chat.ID].ConversationID, userConversations[update.Message.Chat.ID].LastMessageID)
+			filterMessage := strings.Replace(update.Message.Text, os.Getenv("TELEGRAM_BOT_NAME"), "", 1)
+			feed, err := chatGPT.SendMessage(filterMessage, userConversations[update.Message.Chat.ID].ConversationID, userConversations[update.Message.Chat.ID].LastMessageID)
 			if err != nil {
 				msg.Text = fmt.Sprintf("Error: %v", err)
 			}
