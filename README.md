@@ -14,6 +14,14 @@ TELEGRAM_TOKEN=123456:abcdefg # your bot token
 TELEGRAM_BOT_NAME="your_bot_name" # your bot name
 ```
 
+## How to build
+
+```bash
+sudo apt install make go -y
+cd /path-to-this-project/chatgpt-telegram
+make
+```
+
 ## Usage
 
 Run the `chatgpt-telegram` binary!
