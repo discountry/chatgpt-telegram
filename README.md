@@ -18,7 +18,7 @@ TELEGRAM_BOT_NAME="your_bot_name" # your bot name
 
 Run the `chatgpt-telegram` binary!
 
-to get relay you need to mention your bot:
+to get reply you need to mention your bot:
 
 ```
 @chat_bot Hello!
