@@ -18,6 +18,16 @@ TELEGRAM_BOT_NAME="your_bot_name" # your bot name
 
 Run the `chatgpt-telegram` binary!
 
+to get relay you need to mention your bot:
+
+```
+@chat_bot Hello!
+```
+
+This way you can add your bot to a group chat.
+
+If you want to share your bot with your friends, DO NOT SET `TELEGRAM_ID`.
+
 ## Browserless Authentication
 
 By default, the program will launch a browser for you to sign into your account. If for whatever reason this isn't possible (compatibility issues, running on a server without a screen, etc.), you can manually provide your cookie.
